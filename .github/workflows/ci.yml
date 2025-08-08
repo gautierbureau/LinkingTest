@@ -44,9 +44,9 @@ jobs:
         run: |
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
           cmake --build build-windows --target model
-          dir build
+          dir build-windows
           cmake --build build-windows --target solver
-          dir build
+          dir build-windows
           cmake --build build-windows --target main
 
       - name: Run

@@ -7,4 +7,3 @@ add_subdirectory(model)
 add_subdirectory(solver)
 
 add_executable(main main.cpp)
-target_link_libraries(main solver model)
