@@ -13,7 +13,7 @@ class SubModel {
 
   virtual ~SubModel() = default;
 
-  void getFequationByLocalIndex() const;
+  virtual void getFequationByLocalIndex() const;
 };
 
 

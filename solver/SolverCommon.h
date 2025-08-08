@@ -12,7 +12,7 @@ class SolverCommon {
 public:
   static void printLargestErrors(const Model& model);
 
-  static void printLargestErrors( const SubModel& subModel);
+  static void printLargestErrors(const SubModel& subModel);
 };
 
 
