@@ -1,0 +1,51 @@
+name: CI
+
+on: [push]
+
+defaults:
+  run:
+    shell: bash
+jobs:
+  linux:
+    name: Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Configure CMake
+        run: >
+          cmake -S . -B build-linux -G "Unix Makefiles"
+
+      - name: Build
+        run: cmake --build build-linux
+
+      - name: Run
+        run: |
+          ./build/main
+
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Configure CMake
+        shell: cmd
+        run: |
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          cmake -S . -B build-windows -G "NMake Makefiles"
+
+      - name: Build
+        shell: cmd
+        env:
+          VERBOSE: 1
+        run: |
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          cmake --build build-windows
+
+      - name: Run
+        shell: cmd
+        run: |
+          build-windows\main
